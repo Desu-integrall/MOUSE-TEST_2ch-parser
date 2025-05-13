@@ -14,7 +14,15 @@ git clone https://github.com/Desu-integrall/MOUSE-TEST_2ch-parser.git
 ```
 
 ```bash
-cd MOUSE-TEST_2ch-parser && virtualenv venv && source venv/bin/activate
+cd MOUSE-TEST_2ch-parser
+```
+
+```bash
+python -m venv venv
+```
+
+```bash
+venv\Scripts\activate.bat
 ```
 
 ```bash
@@ -25,23 +33,29 @@ pip install -r requirements.txt
 
 Парсинг досок:
 ```bash
-python 2ch-parser.py -b b a po --limit 10
+python 2ch-parser.py --boards b,a,po --limit 10 --output .\datasets
 ```
 
-• -b — список досок.
+• --boards — список досок.
 
-• --limit — кол-во тредов с доски (default: 20).
+• --limit — кол-во тредов с доски (по дефолту парситься вся доска).
+
+• --output - директория установки датасетов.
 
 Парсинг конкретных тредов:
 ```bash
-python 2ch-parser.py -b b -t 319248888 319249111
+python 2ch-parser.py --boards b --threads 319248888,319249111 --output .\datasets
 ```
 
-• -t — список номеров тредов.
+• --threads — список номеров тредов.
 
 ### Управление повторами
 
-Скрипт не скачивает уже обработанные треды. Список хранится в processed_threads.json.
+Скрипт не скачивает уже обработанные треды повторно, если указать аргумент:
+
+• --skip-existing
+
+Список обработанных тредов хранится в processed_threads.json.
 
 ### Результат
 
